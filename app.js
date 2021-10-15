@@ -17,7 +17,11 @@ const sequelize = new Sequelize(process.env.DATABASE_URL);
 // Process FORM intput and put the data on req.body
 app.use(express.urlencoded({ extended: true }));
 
+
+
 // Create a Sequelize model
+// const Users = require('./src/models/login-model.js')
+
 const Users = sequelize.define('User', {
   username: {
     type: DataTypes.STRING,
