@@ -15,10 +15,7 @@ const server = require('./src/server.js');
 //     server.start(PORT);
 //   })
 
-
 const { db } = require('./src/models/index.js');
-
-
 
 db.sync()
   .then(() => {
