@@ -20,11 +20,6 @@ const errorHandler = require('./error-handlers/500.js');
 // Routes
 app.use(loginRoute);
 
-
-
-
-
-
 // Error Handlers - last to be added
 app.use('*', notFoundHandler);
 app.use(errorHandler);
