@@ -1,8 +1,6 @@
 'use strict';
 
 const express = require("express");
-const bcrypt = require('bcrypt');
-const base64 = require('base-64');
 
 const router = express.Router();
 
@@ -19,10 +17,12 @@ router.post('/signup', async (req, res) => {
 
   console.log('body', req.body)
   try {
-    req.body.password = await bcrypt.hash(req.body.password, 10);
-    const record = await Users.create(req.body);
-     console.log('After user Creation')
-    res.status(201).json(record);
+    const userRecord = await Users.create(req.body);
+    const output = {
+      user: userRecord,
+      userToken: userRecord.token,
+    };
+    res.status(201).json(output);
   } catch (e) { res.status(403).send("Error Creating User"); }
 });
 
@@ -30,7 +30,11 @@ router.post('/signup', async (req, res) => {
 // test with httpie
 // http post :3000/signin -a john:foo
 router.post('/signin', basicAuth, async (req, res) => {
-  let users = req.body.user;
+  const users = {
+    user: req.user,
+    // token: req.token
+    token: req.user.token,
+  };
   res.status(200).json(users);
   
 });

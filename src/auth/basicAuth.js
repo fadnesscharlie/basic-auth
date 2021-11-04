@@ -1,5 +1,7 @@
 'use strict';
 
+const Users = require('../models/index.js').login;
+
 const basicAuth = () => {
 
   /*

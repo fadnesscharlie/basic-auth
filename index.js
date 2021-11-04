@@ -21,3 +21,4 @@ db.sync()
   .then(() => {
     server.start(PORT);
   })
+  .catch(console.error)
