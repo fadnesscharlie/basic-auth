@@ -1,6 +1,8 @@
 'use strict';
 
 const Users = require('../models/index.js').login;
+const base64 = require('base-64');
+let bcrypt = require('bcrypt')
 
 const basicAuth = () => {
 
