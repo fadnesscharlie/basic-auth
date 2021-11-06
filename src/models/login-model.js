@@ -1,10 +1,6 @@
 "use strict";
 
-// const { Sequelize, DataTypes } = require('sequelize');
-
-// const sequelize = new Sequelize(process.env.DATABASE_URL);
-
-
+let bcrypt = require('bcrypt')
 
 const UserModel = (sequelize, DataTypes) => {
   user = sequelize.define('User', {
@@ -18,10 +14,10 @@ const UserModel = (sequelize, DataTypes) => {
     },
   });
   
-  users.beforeCreate((user, options) => {
-    return bcrypt.hash(user.password, 5)
+  user.beforeCreate((users, options) => {
+    return bcrypt.hash(users.password, 5)
     .then(hashedPassword => {
-      user.password = hashedPassword;
+      users.password = hashedPassword;
     })
   })
   return user;
