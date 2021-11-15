@@ -30,8 +30,8 @@ const basicAuth = () => {
     */
   
   try {
-    const user = await Users.findOne({ where: { username: username } });
-    const valid = await bcrypt.compare(password, user.password);
+    const user = Users.findOne({ where: { username: username } });
+    const valid = bcrypt.compare(password, user.password);
     if (valid) {
       next()
     } else {
